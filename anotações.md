@@ -106,6 +106,10 @@ Nesse caso, a porta 8080 do host será exposta para a porta 80 do container.
 
 - `docker ps -a`
 
+### Remover container
+
+- `docker rm <ID | name>`
+
 ### Copiar arquivos do container para a máquina:
 
 - `docker cp <nome-container>:<path> <path-maquina>`
@@ -120,3 +124,39 @@ Nesse caso, a porta 8080 do host será exposta para a porta 80 do container.
 ##### Informações de configuração do container:
 
 - `docker inspect <nome-container>`
+
+## Volumes
+
+### Listar volumes
+
+- `docker volume ls`
+
+### Criar volume
+
+- `docker volume create <nome-volume>`
+
+### Informações de volume
+
+- `docker volume inspect <nome-volume>`
+
+### Remover volume
+
+- `docker volume rm <nome-volume>`
+
+### Remover volume não utilizado
+
+- `docker volume prune`
+
+### Criar container com volume
+
+##### Volume anônimo
+
+- `docker run -d -p 8080:80 -v /data <ID-da-imagem>`
+
+##### Volume nomeado
+
+- `docker run -d -p 8080:80 -v <nome-volume>:/data <ID-da-imagem>`
+
+##### Bind mount (mapeamento de diretório)
+
+- `docker run -d -p 8080:80 -v <path-maquina>:<path-container> <ID-da-imagem>`
