@@ -160,3 +160,21 @@ Nesse caso, a porta 8080 do host será exposta para a porta 80 do container.
 ##### Bind mount (mapeamento de diretório)
 
 - `docker run -d -p 8080:80 -v <path-maquina>:<path-container> <ID-da-imagem>`
+
+## Redes
+
+### Listar redes
+
+- `docker network ls`
+
+### Criar rede
+
+- `docker network create <nome-rede>`
+
+### Remover rede
+
+- `docker network rm <nome-rede>`
+
+### Remover rede não utilizada
+
+- `docker network prune`
