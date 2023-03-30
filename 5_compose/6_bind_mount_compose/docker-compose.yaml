@@ -1,0 +1,27 @@
+version: '3.9'
+
+services:
+  db:
+    build: ./mysql/
+    restart: always
+    env_file:
+      - ./config/db.env
+    ports:
+      - 3306:3306
+    networks:
+      - dockercompose
+
+  backend:
+    depends_on:
+      - db
+    build: ./flask/
+    restart: always
+    volumes: 
+      - /home/felipe/git-projects/learning-docker/5_compose/6_bind_mount_compose/flask:/app
+    ports:
+      - 5000:5000
+    networks:
+      - dockercompose
+
+networks:
+  dockercompose:

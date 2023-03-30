@@ -178,3 +178,73 @@ Nesse caso, a porta 8080 do host será exposta para a porta 80 do container.
 ### Remover rede não utilizada
 
 - `docker network prune`
+
+## Docker Swarm
+
+```
+Comandos no Docker Labs:
+CTRL C no Play Docker: CTRL + Insert
+CTRL V no Play Docker: CTRL + Shift + V
+```
+
+### Iniciar swarm e definir o nó como manager
+
+- `docker swarm init`
+
+##### Iniciar swarm e definir o nó como manager e especificar o IP do nó
+
+- `docker swarm init --advertise-addr <IP>`
+
+### Adicionar um nó ao swarm
+
+- `docker swarm join --token <token> <IP>:<PORTA>`
+
+### Sair do swarm
+
+- `docker swarm leave -f`
+
+-f é para forçar a saída do swarm, mesmo que seja o último nó.
+
+### Nodes ativos
+
+- `docker node ls`
+
+### Subindo um serviço
+
+- `docker service create --name <nome-serviço> -p <porta>:<porta> <nome-imagem>`
+
+##### Com replicas
+
+- `docker service create --name <nome-serviço> -p <porta>:<porta> --replicas <número-replicas> <nome-imagem>`
+
+### Checar token do Swarm
+
+- `docker swarm join-token worker`
+
+### Fazer worker sair do swarm
+
+- `docker swarm leave`
+
+### Remover node
+
+- `docker node rm <ID>`
+
+### Inspecionar serviço
+
+- `docker service inspect <nome-serviço>`
+
+### Ver quais containers um serviço está rodando
+
+- `docker service ps <nome-serviço>`
+
+### Rodando Compose com Swarm
+
+- `docker stack deploy -c <nome-arquivo-compose> <nome-stack>`
+
+### Fazer serviço não receber mais tasks
+
+- `docker node update --availability drain <ID>`
+
+### Atualizar imagem de um serviço
+
+- `docker service update --image <nome-imagem> <nome-serviço>`
